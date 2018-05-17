@@ -1,0 +1,29 @@
+{
+  "core": {
+    "backgroundColor": "#333333",
+    "productionMode": true,
+    "pids": [#ASSIGNED_PID],
+    "gcmSenderId": "#GCM_SENDER_ID",
+    "noInternetMessage": "Please check your internet connection",
+    "waitForPageLoadEvent": true,
+    "video_upload_key" : "#PROVIDED_VIDEO_KEY"
+  },
+  "facebook": {
+    "appId": "#FB_APP_ID",
+    "appName": "#FB_APP_NAME",
+    "permissions": [
+      "user_friends",
+      "email",
+      "#ADD_AS_NEEDED"
+    ]
+  },
+  "google": {
+    "appId": "#OAuth_Android_client_ID",
+    "serverClientId": "#OAuth_Web_client_ID"
+  },
+  "twitter": {
+    "apiKey": "#TWITTER_API_KEY",
+    "apiSecretKey": "#TWITTER_API_SECRET"
+  },
+  "noConnectionError": "Please check your internet connection"
+}
