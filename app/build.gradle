@@ -14,13 +14,12 @@ allprojects {
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '27.0.3'
-
+    compileSdkVersion 28
+    buildToolsVersion '28.0.2'
     defaultConfig {
         applicationId "com.scrnz.shelllibraryexample"
-        minSdkVersion 15
-        targetSdkVersion 26
+        minSdkVersion 19
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         // Enabling multidex
@@ -32,14 +31,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    compile ('com.screenz:shell_library:2.3.9@aar'){ //TODO replace with right value
-        transitive=true;
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation('com.screenz:shell_library:3.1.0@aar') { //TODO replace with right value
+        transitive = true;
     }
     //Enable Multidex
-    compile 'com.android.support:multidex:1.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
+    implementation 'com.google.firebase:firebase-core:16.0.3'
+    implementation 'com.google.firebase:firebase-messaging:17.3.1'
 }

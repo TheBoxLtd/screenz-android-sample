@@ -15,7 +15,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 /**
  * Created by MC.
@@ -41,15 +40,7 @@ public class TestActivity extends FragmentActivity {
         if (mLocalConfig.core != null) {
             configManager.setCoreData(mLocalConfig.core);
         }
-        if (mLocalConfig.facebook != null) {
-            configManager.setFacebookData(mLocalConfig.facebook);
-        }
-        if (mLocalConfig.google != null) {
-            configManager.setGooglePlusData(mLocalConfig.google);
-        }
-        if (mLocalConfig.twitter != null) {
-            configManager.setTwitterData(mLocalConfig.twitter);
-        }
+
 //        configManager.setExtraData(this,"#data_to_store"); //In case you want to provide data to the sdk
 //        configManager.setLaunchPageID(this,"#PAGEID"); //In case you want to set the pageid to be opened on launch
 //        configManager.setPid(this,#PID); //In case you want to set the pageid to be opened on launch
