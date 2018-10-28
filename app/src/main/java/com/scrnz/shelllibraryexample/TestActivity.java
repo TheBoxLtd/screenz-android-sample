@@ -1,11 +1,14 @@
 package com.scrnz.shelllibraryexample;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.screenz.shell_library.ShellLibraryBuilder;
@@ -49,6 +52,9 @@ public class TestActivity extends FragmentActivity {
          ******** Config *******
          */
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ShellLibraryBuilder.create(this)).commit();
+
+        IntentFilter intentFilter = new IntentFilter("publishData");
+        this.registerReceiver(dataReceiver , intentFilter);
     }
 
     @Override
@@ -65,6 +71,22 @@ public class TestActivity extends FragmentActivity {
             currentFragment.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+    private BroadcastReceiver dataReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String data = intent.getStringExtra("data");
+            Log.d("DATA RECEIVER",data);
+            if(data.equalsIgnoreCase("sdk-exit-new")){
+                finish();
+            }
+        }
+    };
+
+    public void finish() {
+        this.unregisterReceiver(dataReceiver);
+        super.finish();
+    };
 
     private void loadLocalConfig() {
         BufferedReader in = null;
