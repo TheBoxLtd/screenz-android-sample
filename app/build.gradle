@@ -15,10 +15,10 @@ allprojects {
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.2'
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.scrnz.shelllibraryexample"
-        minSdkVersion 19
+        minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -37,13 +37,12 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation('com.screenz:shell_library:3.1.0@aar') { //TODO replace with right value
+    implementation('com.screenz:shell_library:3.1.6@aar') { //TODO replace with right value
         transitive = true;
     }
     //Enable Multidex
     implementation 'com.android.support:multidex:1.0.3'
-
-    implementation 'com.google.android.gms:play-services-location:15.0.1'
-    implementation 'com.google.firebase:firebase-core:16.0.3'
-    implementation 'com.google.firebase:firebase-messaging:17.3.1'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
 }
