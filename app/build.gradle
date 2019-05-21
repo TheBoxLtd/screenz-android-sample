@@ -37,12 +37,12 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation('com.screenz:shell_library:3.1.6@aar') { //TODO replace with right value
+    implementation('com.screenz:shell_library:3.1.9@aar') {
         transitive = true;
     }
     //Enable Multidex
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
-    implementation 'com.google.firebase:firebase-core:16.0.6'
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.google.firebase:firebase-messaging:18.0.0'
 }
