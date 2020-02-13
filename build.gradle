@@ -4,10 +4,10 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven { url 'http://jcenter.bintray.com' }
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.android.tools.build:gradle:3.5.3'
     }
 }
 
@@ -17,6 +17,7 @@ allprojects {
         mavenCentral()
         jcenter()
         maven { url "https://jitpack.io" }
+        maven { url 'https://artifactory.img.ly/artifactory/imgly' }    //For PhotoEditor SDK
     }
 }
 

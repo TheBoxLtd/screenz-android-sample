@@ -3,12 +3,17 @@ package com.scrnz.shelllibraryexample;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
-import androidx.multidex.MultiDex;
+import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.MediaController;
+import android.widget.VideoView;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import android.util.Log;
+import androidx.multidex.MultiDex;
 
 import com.google.gson.Gson;
 import com.screenz.shell_library.ShellLibraryBuilder;
@@ -19,23 +24,29 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-/**
- * Created by MC.
- */
-public class TestActivity extends FragmentActivity {
-
+public class SplitActivity extends FragmentActivity {
     private static final String CONFIG_FILE_NAME = "config.json";
-    private static TestActivity INSTANCE;
+    private static SplitActivity INSTANCE;
     private LocalConfig mLocalConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_activity);
 
-        /**
-         ******** Config *******
-         */
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.split_activity);
+
+        final String path = "android.resource://" + getPackageName() + "/raw/video";
+
+        Uri uri = Uri.parse(path);
+        MediaController mediaController = new MediaController(this);
+
+        VideoView simpleVideoView = findViewById(R.id.split_video_view);
+        simpleVideoView.setMediaController(mediaController);
+        simpleVideoView.setVideoURI(uri);
+        simpleVideoView.start();
 
         loadLocalConfig();
 
@@ -43,18 +54,7 @@ public class TestActivity extends FragmentActivity {
         if (mLocalConfig.core != null) {
             configManager.setCoreData(mLocalConfig.core);
         }
-
-//        configManager.setExtraData(this,"#data_to_store"); //In case you want to provide data to the sdk
-//        configManager.setLaunchPageID(this,"#PAGEID"); //In case you want to set the pageid to be opened on launch
-//        configManager.setPid(this,#PID); //In case you want to set the pageid to be opened on launch
-
-        /**
-         ******** Config *******
-         */
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, ShellLibraryBuilder.create(this)).commit();
-
-        IntentFilter intentFilter = new IntentFilter("publishData");
-        this.registerReceiver(dataReceiver , intentFilter);
+        getSupportFragmentManager().beginTransaction().replace(R.id.split_framework_view, ShellLibraryBuilder.create(this)).commit();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class TestActivity extends FragmentActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.split_framework_view);
         if (currentFragment != null){
             currentFragment.onActivityResult(requestCode, resultCode, data);
         }

@@ -2,7 +2,7 @@
   "core": {
     "backgroundColor": "#333333",
     "productionMode": true,
-    "pids": [#ASSIGNED_PID],
+    "pids": [60],
     "gcmSenderId": "#GCM_SENDER_ID",
     "noInternetMessage": "Please check your internet connection",
     "waitForPageLoadEvent": true,
